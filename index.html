@@ -5,47 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Map</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.4/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/amcharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/serial.js"></script>
+    <script src="https://unpkg.com/@esri/cedar@1.0.0-beta.2/dist/umd/cedar.js"></script>
+    <script src="https://unpkg.com/@esri/cedar@1.0.0-beta.2/dist/umd/themes/amCharts/calcite.js"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.6/"></script>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
-
     <div class="header">
         <h1>Dashboard Map</h1>
-        <p>Develop and design by engr.ahmed jamal.</p>
+        <p>design and develop by engr.ahmed jamal</p>
     </div>
-
-
     <div class="row">
         <div class="leftcolumn">
-            <div class="leftcard">
-                <h2>TITLE HEADING</h2>
-                <h5>Title description, Dec 7, 2017</h5>
-                <p>Some text..</p>
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco.</p>
+            <div class="leftcard" id="chart">
             </div>
-            <div class="leftcard">
-                <h2>TITLE HEADING</h2>
-                <h5>Title description, Sep 2, 2017</h5>
-                <p>Some text..</p>
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco.</p>
+            <div class="leftcard" id="charts">  
             </div>
-
         </div>
         <div class="rightcolumn">
             <div class="rightcard" id="mapView">
-
             </div>
         </div>
     </div>
-
 
     <table class="footerRow">
         <tr></tr>
@@ -55,30 +41,15 @@
         <tr></tr>
         <tr></tr>
         <tr class="footercolumn">
-            <td class="footercard">
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud
-                    exercitation ullamco.</p>
-            </td>
+            <td class="footercard" id="thirdchart"></td>
             <td></td>
             <td></td>
             <td></td>
-            <td class="footercard">
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud
-                    exercitation ullamco.</p>
-            </td>
+            <td class="footercard" id="fourthchart"></td>
             <td></td>
             <td></td>
             <td></td>
-            <td class="footercard">
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud
-                    exercitation ullamco.</p>
-            </td>
+            <td class="footercard" id="Fifthhchart"></td>
         </tr>
     </table>
 </body>
