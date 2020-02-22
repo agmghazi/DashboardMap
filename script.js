@@ -1,21 +1,91 @@
 let map;
 let view;
 require([
-  "esri/layers/FeatureLayer",
   "esri/Map",
   "esri/views/MapView",
+  "esri/layers/FeatureLayer",
   "dojo/domReady"
-], function(FeatureLayer, Map, MapView) {
-  map = new Map({
-    basemap: "topo"
+], function(Map, MapView, FeatureLayer) {
+  //add symbol
+  let layerSambol = {
+    type: "simple",
+    symbol: {
+      type: "simple-marker",
+      color: "blue",
+      outline: {
+        width: 0.5,
+        color: "white"
+      }
+    }
+  };
+  //add label
+  var layerLabel = {
+    symbol: {
+      type: "text",
+      color: "black",
+      haloColor: "white",
+      haloSize: "1.5px",
+      font: {
+        size: "13px",
+        family: "Noto Sans",
+        style: "italic",
+        weight: "normal"
+      }
+    },
+    labelPlacement: "above-center",
+    labelExpressionInfo: {
+      expression: "$feature.Year"
+    }
+  };
+  // add popup
+  let layerPopup = {
+    title: "{Year}",
+    content:
+      // "<b>Year:</b> {Year}<br><b>Lenth_of_Tornado:</b> {Lenth_of_Tornado} </br>  <a href='https://www.google.com/' target='_blank'>Google</a>"
+      `<table id='popupTable'>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Year</td>
+        <td>{Year}</td>
+      </tr>
+      <tr>
+        <td>Lenth_of_Tornado</td>
+        <td>{Lenth_of_Tornado}</td>
+      </tr>
+      <tr>
+        <td>Google</td>
+        <td><a href='https://www.google.com/'>Google</a></td>
+      </tr>
+    </table>`
+    };
+    //add feature layer
+  let featureLayer = new FeatureLayer({
+    url:
+      "https://services.arcgis.com/bkrWlSKcjUDFDtgw/arcgis/rest/services/It's_a_Tornado_Map/FeatureServer/0",
+    outFields: ["*"],
+    popupEnabled: true,
+    id: "featureLayer",
+    renderer: layerSambol,
+    outFields: ["Year", "Lenth_of_Tornado"],
+    labelingInfo: [layerLabel],
+    labelsVisible: true,
+    popupTemplate: layerPopup
   });
 
+  map = new Map({
+    basemap: "satellite"
+    // layers: [featureLayer]
+  });
   view = new MapView({
     container: "mapView",
     map: map,
     zoom: 4,
     center: [-99, 38.9]
   });
+  map.add(featureLayer);
 
   view.surface.addEventListener(
     "wheel",
@@ -25,27 +95,7 @@ require([
     true
   );
 
-  var defaultSymbol = {
-    type: "simple-marker",
-    outline: {
-      color: [198, 12, 70, 1]
-    },
-    size: 9,
-    color: [248, 187, 37, 0.9]
-  };
-  var rend = {
-    type: "simple",
-    symbol: defaultSymbol
-  };
-  var featureLayer = new FeatureLayer({
-    url:
-      "https://services.arcgis.com/bkrWlSKcjUDFDtgw/arcgis/rest/services/It's_a_Tornado_Map/FeatureServer/0",
-    renderer: rend
-    // outFields: ["*"]
-  });
-  map.add(featureLayer);
-
-  var definition = {
+  let definition = {
     type: "bar-horizontal",
     datasets: [
       {
@@ -78,11 +128,11 @@ require([
     ]
   };
 
-  var cedarChart = new cedar.Chart("chart", definition);
+  let cedarChart = new cedar.Chart("chart", definition);
   cedarChart.show();
 
   view.watch("extent", function(newValue) {
-    var newExtent = JSON.stringify(newValue);
+    let newExtent = JSON.stringify(newValue);
     cedarChart.datasets()[0].query.geometry = newExtent;
     cedarChart.show();
   });
@@ -121,11 +171,11 @@ require([
     ]
   };
 
-  var cedarCharts = new cedar.Chart("charts", definitions);
+  let cedarCharts = new cedar.Chart("charts", definitions);
   cedarCharts.show();
 
   view.watch("extent", function(newValue) {
-    var newExtent = JSON.stringify(newValue);
+    let newExtent = JSON.stringify(newValue);
     cedarCharts.datasets()[0].query.geometry = newExtent;
     cedarCharts.show();
   });
@@ -164,11 +214,11 @@ require([
     ]
   };
 
-  var thirdcedarChart = new cedar.Chart("thirdchart", thirddefinition);
+  let thirdcedarChart = new cedar.Chart("thirdchart", thirddefinition);
   thirdcedarChart.show();
 
   view.watch("extent", function(newValue) {
-    var newExtent = JSON.stringify(newValue);
+    let newExtent = JSON.stringify(newValue);
     thirdcedarChart.datasets()[0].query.geometry = newExtent;
     thirdcedarChart.show();
   });
@@ -207,11 +257,11 @@ require([
     ]
   };
 
-  var fourthChart = new cedar.Chart("fourthchart", fourthdefinition);
+  let fourthChart = new cedar.Chart("fourthchart", fourthdefinition);
   fourthChart.show();
 
   view.watch("extent", function(newValue) {
-    var newExtent = JSON.stringify(newValue);
+    let newExtent = JSON.stringify(newValue);
     fourthChart.datasets()[0].query.geometry = newExtent;
     fourthChart.show();
   });
@@ -250,38 +300,39 @@ require([
     ]
   };
 
-  var FifthChart = new cedar.Chart("Fifthhchart", Fifthhdefinition);
+  let FifthChart = new cedar.Chart("Fifthhchart", Fifthhdefinition);
   FifthChart.show();
 
   view.watch("extent", function(newValue) {
-    var newExtent = JSON.stringify(newValue);
+    let newExtent = JSON.stringify(newValue);
     FifthChart.datasets()[0].query.geometry = newExtent;
     FifthChart.show();
   });
 });
 
 // jquery widgets
-$(function () {
-    $("#attributTabe").dialog({
-            autoOpen: false,
-            show: {
-                effect: "blind",
-                duration: 1000
-            },
-            hide: {
-                effect: "explode",
-                duration: 1000
-            },
-            width: 500
-        })
-        .dialogExtend({
-            "maximizable": true,
-            "dblclick": "maximize",
-            "icons": {
-                "maximize": "ui-icon-arrow-4-diag"
-            }
-        })
-    $("#toggleAttribute").on("click", function () {
-        $("#attributTabe").dialog("open");
+$(function() {
+  $("#attributTabe")
+    .dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      width: 500
+    })
+    .dialogExtend({
+      maximizable: true,
+      dblclick: "maximize",
+      icons: {
+        maximize: "ui-icon-arrow-4-diag"
+      }
     });
+  $("#toggleAttribute").on("click", function() {
+    $("#attributTabe").dialog("open");
+  });
 });

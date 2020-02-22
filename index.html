@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/serial.js"></script>
     <script src="https://unpkg.com/@esri/cedar@1.0.0-beta.2/dist/umd/cedar.js"></script>
     <script src="https://unpkg.com/@esri/cedar@1.0.0-beta.2/dist/umd/themes/amCharts/calcite.js"></script>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css" />
     <!-- jquery and fonts library -->
     <link rel="stylesheet" href="libraryFiles/font-awesome.min.css" />
     <link
@@ -21,14 +20,51 @@
     <script src="libraryFiles/jquery.dialogextend.min.js"></script>
     <script src="libraryFiles/font-awesome.js"></script>
 
-    <script src="https://js.arcgis.com/4.6/init.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.12/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.12/init.js"></script>
+
     <link rel="stylesheet" href="style.css" />
+    <!-- this for go any link aut of my page -->
+    <base target="_blank" />
     <script src="script.js" defer></script>
     <script>
       function browserZoom() {
         document.body.style.zoom = "90%";
       }
     </script>
+
+    <style>
+      #popupTable {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #popupTable td,
+      #popupTable th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      #popupTable tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #popupTable tr:hover {
+        background-color: #ddd;
+      }
+
+      #popupTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #464746;
+        color: white;
+      }
+    </style>
   </head>
 
   <body onload="browserZoom()">
