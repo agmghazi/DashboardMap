@@ -1,27 +1,10 @@
-/* above page */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial;
-    padding: 0px;
-    background: #f1f1f1;
-}
-
-/* styles for map */
-#mapView {
-    padding: 0px;
-    width: 1550px;
-    height: 600px;
-}
-
 /* style for charts */
 #chart,
 #charts {
     width: 500px;
     height: 300px;
-   
+    position: sticky;
+    overflow: hidden;
 }
 
 #thirdchart {
