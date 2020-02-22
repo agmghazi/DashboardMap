@@ -1,0 +1,22 @@
+{
+  "name": "dashboardmap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agmghazi/DashboardMap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agmghazi/DashboardMap/issues"
+  },
+  "homepage": "https://github.com/agmghazi/DashboardMap#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
