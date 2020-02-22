@@ -13,9 +13,14 @@
     <script src="https://js.arcgis.com/4.6/"></script>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script>
+        function browserZoom(){
+            document.body.style.zoom="90%"
+        }
+    </script>
 </head>
 
-<body>
+<body onload="browserZoom()">
     <div class="header">
         <h1>Dashboard Map</h1>
         <p>design and develop by engr.ahmed jamal</p>
